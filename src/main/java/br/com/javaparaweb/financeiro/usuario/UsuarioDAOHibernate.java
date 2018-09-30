@@ -5,7 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-public class UsuarioDAOHibernate {
+public class UsuarioDAOHibernate implements UsuarioDAO{
 
 	private Session session;
 
@@ -21,24 +21,25 @@ public class UsuarioDAOHibernate {
 		this.session.update(usuario);
 	}
 
-	public void exlcuir(Usuario usuario) {
+	public void excluir(Usuario usuario) {
 		this.session.delete(usuario);
 	}
-
-	public Usuario carregar(Integer codigo) {
+	
+	public Usuario carregar (Integer codigo){
 		return (Usuario) this.session.get(Usuario.class, codigo);
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	public List<Usuario> listar() {
+	public List <Usuario> listar(){
 		return this.session.createCriteria(Usuario.class).list();
 	}
-
-	public Usuario buscarPorLogin(String login) {
+	
+	public Usuario buscarPorLogin(String login){
 		String hql = "select u from Usuario u where u.login = :login";
 		Query consulta = this.session.createQuery(hql);
 		consulta.setString("login", login);
 		return (Usuario) consulta.uniqueResult();
+		
 	}
 
 }
