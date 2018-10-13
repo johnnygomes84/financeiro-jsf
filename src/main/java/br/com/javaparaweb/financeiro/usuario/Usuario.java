@@ -3,11 +3,12 @@ package br.com.javaparaweb.financeiro.usuario;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Usuario implements Serializable {
-	
 	@Id
 	@GeneratedValue
 	private Integer codigo;
@@ -21,7 +22,6 @@ public class Usuario implements Serializable {
 	private String idioma;
 	private boolean ativo;
 
-	// get and set
 	public Integer getCodigo() {
 		return codigo;
 	}
@@ -94,7 +94,6 @@ public class Usuario implements Serializable {
 		this.ativo = ativo;
 	}
 
-	// hashCode and equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
